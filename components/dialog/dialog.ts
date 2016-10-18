@@ -82,6 +82,8 @@ export class Dialog implements AfterViewInit,AfterViewChecked,OnDestroy {
     @Output() onBeforeHide: EventEmitter<any> = new EventEmitter();
 
     @Output() onAfterHide: EventEmitter<any> = new EventEmitter();
+    
+    @Output() onAfterResize:EventEmitter<any> = new EventEmitter();
 
     @Output() visibleChange:EventEmitter<any> = new EventEmitter();
     
@@ -298,6 +300,9 @@ export class Dialog implements AfterViewInit,AfterViewChecked,OnDestroy {
             
             this.lastPageX = event.pageX;
             this.lastPageY = event.pageY;
+            event.newHeight = newHeight;
+            event.newWidth = newWidth;
+            this.onAfterResize.emit(event);
         }
     }
     
